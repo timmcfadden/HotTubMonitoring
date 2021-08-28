@@ -1,0 +1,57 @@
+{
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workbookDisplayName": {
+      "type": "string",
+      "defaultValue": "HotTub",
+      "metadata": {
+        "description": "The friendly name for the workbook that is used in the Gallery or Saved List.  This name must be unique within a resource group."
+      }
+    },
+    "workbookType": {
+      "type": "string",
+      "defaultValue": "workbook",
+      "metadata": {
+        "description": "The gallery that the workbook will been shown under. Supported values include workbook, tsg, etc. Usually, this is 'workbook'"
+      }
+    },
+    "workbookSourceId": {
+      "type": "string",
+      "defaultValue": "Azure Monitor",
+      "metadata": {
+        "description": "The id of resource instance to which the workbook will be associated"
+      }
+    },
+    "workbookId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]",
+      "metadata": {
+        "description": "The unique guid for this workbook instance"
+      }
+    }
+  },
+  "resources": [
+    {
+      "name": "[parameters('workbookId')]",
+      "type": "microsoft.insights/workbooks",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2018-06-17-preview",
+      "dependsOn": [],
+      "kind": "shared",
+      "properties": {
+        "displayName": "[parameters('workbookDisplayName')]",
+        "serializedData": "{\"version\":\"Notebook/1.0\",\"items\":[{\"type\":12,\"content\":{\"version\":\"NotebookGroup/1.0\",\"groupType\":\"editable\",\"items\":[{\"type\":3,\"content\":{\"version\":\"KqlItem/1.0\",\"query\":\"HotTub_CL \\r\\n| top 1 by TimeGenerated\\r\\n| extend PH=todouble(PHValue_s)\\r\\n| project PH\",\"size\":3,\"timeContext\":{\"durationMs\":86400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"crossComponentResources\":[\"/subscriptions/dc02a6bc-2629-46a2-bfd6-84fdc7bf44e5/resourceGroups/HotTub-RG/providers/Microsoft.OperationalInsights/workspaces/HotTubLA\"],\"visualization\":\"card\",\"tileSettings\":{\"titleContent\":{},\"leftContent\":{\"columnMatch\":\"PH\"},\"showBorder\":true,\"size\":\"auto\"},\"textSettings\":{\"style\":\"bignumber\"}},\"name\":\"query - 6 - Copy\",\"styleSettings\":{\"margin\":\"10\",\"padding\":\"10\"}},{\"type\":3,\"content\":{\"version\":\"KqlItem/1.0\",\"query\":\"HotTub_CL \\r\\n| top 1 by TimeGenerated\\r\\n| extend ORP=todouble(ORPValue_s)\\r\\n| project ORP\",\"size\":3,\"timeContext\":{\"durationMs\":86400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"crossComponentResources\":[\"/subscriptions/dc02a6bc-2629-46a2-bfd6-84fdc7bf44e5/resourceGroups/HotTub-RG/providers/Microsoft.OperationalInsights/workspaces/HotTubLA\"],\"visualization\":\"card\",\"tileSettings\":{\"titleContent\":{},\"leftContent\":{\"columnMatch\":\"PH\"},\"showBorder\":true,\"size\":\"auto\"},\"textSettings\":{\"style\":\"bignumber\"}},\"name\":\"query - 6\",\"styleSettings\":{\"margin\":\"10\",\"padding\":\"10\"}},{\"type\":3,\"content\":{\"version\":\"KqlItem/1.0\",\"query\":\"HotTub_CL \\r\\n| top 1 by TimeGenerated\\r\\n| extend Temp=todouble(TempValue_s)\\r\\n| project Temp\",\"size\":3,\"timeContext\":{\"durationMs\":86400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"crossComponentResources\":[\"/subscriptions/dc02a6bc-2629-46a2-bfd6-84fdc7bf44e5/resourceGroups/HotTub-RG/providers/Microsoft.OperationalInsights/workspaces/HotTubLA\"],\"visualization\":\"card\",\"tileSettings\":{\"titleContent\":{},\"leftContent\":{\"columnMatch\":\"PH\"},\"showBorder\":true,\"size\":\"auto\"},\"textSettings\":{\"style\":\"bignumber\"}},\"name\":\"query - 6 - Copy\",\"styleSettings\":{\"margin\":\"10\",\"padding\":\"10\"}}]},\"name\":\"Last Values\"},{\"type\":3,\"content\":{\"version\":\"KqlItem/1.0\",\"query\":\"HotTub_CL\\r\\n| extend ORP=todouble(ORPValue_s)\\r\\n| render timechart\",\"size\":0,\"aggregation\":5,\"timeContext\":{\"durationMs\":86400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"crossComponentResources\":[\"/subscriptions/dc02a6bc-2629-46a2-bfd6-84fdc7bf44e5/resourceGroups/HotTub-RG/providers/Microsoft.OperationalInsights/workspaces/HotTubLA\"],\"chartSettings\":{\"seriesLabelSettings\":[{\"seriesName\":\"025a2009-e917-4761-b136-f4834e1767d5\",\"label\":\"ORP\"}]}},\"name\":\"query - 1\"},{\"type\":3,\"content\":{\"version\":\"KqlItem/1.0\",\"query\":\"HotTub_CL\\r\\n| extend PH=todouble(PHValue_s)\\r\\n| render timechart\",\"size\":0,\"aggregation\":5,\"timeContext\":{\"durationMs\":86400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"crossComponentResources\":[\"/subscriptions/dc02a6bc-2629-46a2-bfd6-84fdc7bf44e5/resourceGroups/HotTub-RG/providers/Microsoft.OperationalInsights/workspaces/HotTubLA\"],\"chartSettings\":{\"seriesLabelSettings\":[{\"seriesName\":\"025a2009-e917-4761-b136-f4834e1767d5\",\"label\":\"PH\"}]}},\"name\":\"PH Last 24 Hours\"},{\"type\":3,\"content\":{\"version\":\"KqlItem/1.0\",\"query\":\"HotTub_CL\\r\\n| extend Temperature=todouble(TempValue_s)\\r\\n| render timechart\",\"size\":0,\"aggregation\":5,\"timeContext\":{\"durationMs\":86400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"crossComponentResources\":[\"/subscriptions/dc02a6bc-2629-46a2-bfd6-84fdc7bf44e5/resourceGroups/HotTub-RG/providers/Microsoft.OperationalInsights/workspaces/HotTubLA\"],\"chartSettings\":{\"seriesLabelSettings\":[{\"seriesName\":\"025a2009-e917-4761-b136-f4834e1767d5\",\"label\":\"Temperature\"}]}},\"name\":\"query - 3\"},{\"type\":3,\"content\":{\"version\":\"KqlItem/1.0\",\"query\":\"HotTub_CL\\r\\n| where TimeGenerated > ago(30d)\\r\\n| summarize avg(todouble(TempValue_s)) by bin(TimeGenerated , 30m)\\r\\n| order by TimeGenerated desc \\r\\n| extend UpperLimit = 108\\r\\n| extend LowerLimit = 98\\r\\n| render timechart \",\"size\":0,\"aggregation\":5,\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"crossComponentResources\":[\"/subscriptions/dc02a6bc-2629-46a2-bfd6-84fdc7bf44e5/resourceGroups/HotTub-RG/providers/Microsoft.OperationalInsights/workspaces/HotTubLA\"],\"chartSettings\":{\"seriesLabelSettings\":[{\"seriesName\":\"avg_TempValue_s\",\"label\":\"Temperature\"}]}},\"name\":\"query - 2 - Copy - Copy\"},{\"type\":3,\"content\":{\"version\":\"KqlItem/1.0\",\"query\":\"HotTub_CL\\r\\n| where TimeGenerated > ago(30d)\\r\\n| summarize avg(todouble(PHValue_s)) by bin(TimeGenerated , 30m)\\r\\n| order by TimeGenerated desc \\r\\n| extend UpperLimit = 7.8\\r\\n| extend LowerLimit = 7.2\\r\\n| render timechart \",\"size\":0,\"aggregation\":5,\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"crossComponentResources\":[\"/subscriptions/dc02a6bc-2629-46a2-bfd6-84fdc7bf44e5/resourceGroups/HotTub-RG/providers/Microsoft.OperationalInsights/workspaces/HotTubLA\"],\"chartSettings\":{\"seriesLabelSettings\":[{\"seriesName\":\"avg_PHValue_s\",\"label\":\"PH\"}]}},\"name\":\"query - 2\"},{\"type\":3,\"content\":{\"version\":\"KqlItem/1.0\",\"query\":\"HotTub_CL\\r\\n| where TimeGenerated > ago(30d)\\r\\n| summarize avg(todouble(ORPValue_s)) by bin(TimeGenerated , 30m)\\r\\n| order by TimeGenerated desc \\r\\n| extend UpperLimit = 750\\r\\n| extend LowerLimit = 650\\r\\n| render timechart \",\"size\":0,\"aggregation\":5,\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"crossComponentResources\":[\"/subscriptions/dc02a6bc-2629-46a2-bfd6-84fdc7bf44e5/resourceGroups/HotTub-RG/providers/Microsoft.OperationalInsights/workspaces/HotTubLA\"],\"chartSettings\":{\"seriesLabelSettings\":[{\"seriesName\":\"avg_ORPValue_s\",\"label\":\"ORP\"}]}},\"name\":\"query - 2 - Copy\"}],\"isLocked\":false,\"fallbackResourceIds\":[\"Azure Monitor\"]}",
+        "version": "1.0",
+        "sourceId": "[parameters('workbookSourceId')]",
+        "category": "[parameters('workbookType')]"
+      }
+    }
+  ],
+  "outputs": {
+    "workbookId": {
+      "type": "string",
+      "value": "[resourceId( 'microsoft.insights/workbooks', parameters('workbookId'))]"
+    }
+  },
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#"
+}
